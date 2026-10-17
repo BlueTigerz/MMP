@@ -1,2 +1,2 @@
 # MMP
-# My Media Player
+My Media Player
