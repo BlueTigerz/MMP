@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Media Player</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>🎵 Media Player</h1>
+
+  <div class="row">
+    <select id="sel" aria-label="Playlist"></select>
+    <button id="newPl">New</button>
+    <button id="renPl">Rename</button>
+    <button id="delPl">Delete</button>
+  </div>
+
+  <div class="card">
+    <div id="now">Nothing playing</div>
+    <div id="sub">Import some music to begin</div>
+    <div class="seek"><span id="cur">0:00</span><input id="seek" type="range" min="0" max="1000" value="0"><span id="dur">0:00</span></div>
+    <div class="ctrl">
+      <button id="shuf" title="Shuffle">🔀</button>
+      <button id="prev" title="Previous">⏮</button>
+      <button id="toggle" class="pri">▶ Play</button>
+      <button id="stop" title="Stop">⏹</button>
+      <button id="next" title="Next">⏭</button>
+      <button id="rep" title="Repeat">🔁</button>
+    </div>
+    <div class="opts">
+      <button id="mute" title="Mute">🔊</button>
+      <input id="vol" type="range" min="0" max="1" step="0.01" value="1" title="Volume">
+      <span style="flex:1"></span>
+      Speed
+      <select id="speed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+    </div>
+  </div>
+
+  <div class="row">
+    <button id="add" class="pri">＋ Import music</button>
+    <button id="expPl">Export playlist</button>
+    <button id="impPl">Import playlist</button>
+    <input id="file" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac,.opus,.weba" multiple hidden>
+    <input id="plFile" type="file" accept=".json,application/json" hidden>
+  </div>
+
+  <div class="card" style="padding:6px">
+    <ul id="list"></ul>
+    <div id="empty">This playlist is empty.<br>Click “Import music” or drop audio files anywhere on this page.</div>
+  </div>
+  <div class="hint">Click a song to play · drag rows or use ↑ ↓ to reorder · ⬇ saves a song to your computer · Space = play/pause</div>
+</main>
+
+<div id="drop" hidden>Drop audio files to add them</div>
+<div id="modal" hidden><div class="box"><p id="mMsg"></p><input id="mIn" type="text"><div class="row"><button id="mNo">Cancel</button><button id="mOk" class="pri">OK</button></div></div></div>
+<div id="toast" hidden></div>
+
+<script src="player.js"></script>
+</body>
+</html>
