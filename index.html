@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Media Player</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Media Player</h1>
+
+  <div class="row">
+    <select id="sel" aria-label="Playlist"></select>
+    <button id="newPl">New</button>
+    <button id="renPl">Rename</button>
+    <button id="delPl">Delete</button>
+  </div>
+
+  <div class="card player">
+    <div class="top">
+      <div class="art"><svg class="ic f" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+      <div class="meta">
+        <div id="now">Nothing playing</div>
+        <div id="sub">Import some music to begin</div>
+      </div>
+    </div>
+
+    <div class="seek"><span id="cur">0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Seek"><span id="dur">0:00</span></div>
+
+    <div class="ctrl">
+      <button id="shuf" class="icon" title="Shuffle"><svg class="ic" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg></button>
+      <button id="prev" class="icon" title="Previous"><svg class="ic f" viewBox="0 0 24 24"><path d="M6 6h2v12H6zM9.5 12l8.5 6V6z"/></svg></button>
+      <button id="toggle" class="big" title="Play / Pause">
+        <svg class="ic f i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="ic f i-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <button id="stop" class="icon" title="Stop"><svg class="ic f" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></button>
+      <button id="next" class="icon" title="Next"><svg class="ic f" viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg></button>
+    </div>
+
+    <div class="loops">
+      <button id="rep" class="pill" title="Repeat the whole playlist"><svg class="ic" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3"/></svg>Repeat playlist</button>
+      <button id="loop" class="pill" title="Loop only this song"><svg class="ic" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3M11 10l1.5-1v7"/></svg>Loop song</button>
+    </div>
+
+    <div class="opts">
+      <button id="mute" class="icon sm" title="Mute">
+        <svg class="ic i-vol" viewBox="0 0 24 24"><path class="fillp" d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>
+        <svg class="ic i-mute" viewBox="0 0 24 24"><path class="fillp" d="M11 5 6 9H2v6h4l5 4z"/><path d="M16 9l6 6M22 9l-6 6"/></svg>
+      </button>
+      <input id="vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+      <span class="grow"></span>
+      <label for="speed">Speed</label>
+      <select id="speed"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+    </div>
+  </div>
+
+  <div class="row">
+    <button id="add" class="pri">＋ Import music</button>
+    <button id="expPl">Export playlist</button>
+    <button id="impPl">Import playlist</button>
+    <input id="file" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.aac,.flac,.opus,.weba" multiple hidden>
+    <input id="plFile" type="file" accept=".json,application/json" hidden>
+  </div>
+
+  <div class="card tracks">
+    <ul id="list"></ul>
+    <div id="empty">This playlist is empty.<br>Click “Import music” or drop audio files anywhere on this page.</div>
+  </div>
+  <div class="hint">Click a song to play · drag rows or use ↑ ↓ to reorder · ⬇ saves a song to your computer · Space = play/pause</div>
+</main>
+
+<div id="drop" hidden>Drop audio files to add them</div>
+<div id="modal" hidden><div class="box"><p id="mMsg"></p><input id="mIn" type="text"><div class="row"><button id="mNo">Cancel</button><button id="mOk" class="pri">OK</button></div></div></div>
+<div id="toast" hidden></div>
+
+<script src="player.js"></script>
+</body>
+</html>
